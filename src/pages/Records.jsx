@@ -1,54 +1,72 @@
-export default function Records() {
+export default function Records({ setActiveTab }) {
   return (
     <div className="page-layout">
-      <div className="page-header">
-        <h2>Health Records</h2>
-        <div className="filter-group">
-          <button className="filter-btn active">All</button>
-          <button className="filter-btn">Vitals</button>
-          <button className="filter-btn">Meds</button>
+      <div className="page-header" style={{ marginBottom: '16px' }}>
+        <button className="back-btn" onClick={() => setActiveTab('Home')} style={{ fontSize: '20px', padding: 0 }}>←</button>
+        <h2 style={{ fontSize: '20px', margin: 0, flex: 1, textAlign: 'center', paddingRight: '20px' }}>
+          Health History
+        </h2>
+      </div>
+
+      {/* Tabs Menu */}
+      <div className="history-tabs">
+        <button className="tab active">Overview</button>
+        <button className="tab">Vitals</button>
+        <button className="tab">Lab Results</button>
+      </div>
+
+      {/* Overview Metrics Cards */}
+      <div className="metrics-container">
+        <div className="metric-card">
+          <div className="metric-header">
+            <h4>Blood Pressure</h4>
+          </div>
+          <div className="metric-body">
+            <div className="metric-data">
+              <span className="value">120/80</span>
+              <span className="unit">mmHg</span>
+              <span className="status-badge normal">Normal</span>
+            </div>
+            {/* Fake CSS Chart Representation */}
+            <div className="fake-chartline">📈</div>
+          </div>
+        </div>
+
+        <div className="metric-card">
+          <div className="metric-header">
+            <h4>Weight</h4>
+          </div>
+          <div className="metric-body">
+            <div className="metric-data">
+              <span className="value">70</span>
+              <span className="unit">kg</span>
+              <span className="status-badge normal">Normal</span>
+            </div>
+            <div className="fake-chartline">📉</div>
+          </div>
         </div>
       </div>
 
-      <div className="timeline">
-        {/* Timeline Item 1 */}
-        <div className="timeline-item">
-          <div className="timeline-icon bg-blue">🩺</div>
-          <div className="timeline-content">
-            <div className="timeline-header">
-              <h4>Blood Pressure</h4>
-              <span className="time-text">Today, 8:00 AM</span>
-            </div>
-            <p className="metric">120 / 80 mmHg</p>
-            <span className="status-text good">Normal Range</span>
-          </div>
+      {/* Recent Records List */}
+      <div className="section-title" style={{ marginTop: '24px', marginBottom: '12px' }}>
+        Recent Records
+      </div>
+      
+      <div className="recent-records-grid">
+        <div className="record-mini-card">
+          <span className="date">20 May 2026</span>
+          <div className="record-val">BP: 120/80 <span>›</span></div>
         </div>
-
-        {/* Timeline Item 2 */}
-        <div className="timeline-item">
-          <div className="timeline-icon bg-green">💊</div>
-          <div className="timeline-content">
-            <div className="timeline-header">
-              <h4>Lisinopril (10mg)</h4>
-              <span className="time-text">Yesterday, 9:00 PM</span>
-            </div>
-            <p className="metric">Taken</p>
-          </div>
-        </div>
-
-        {/* Timeline Item 3 */}
-        <div className="timeline-item">
-          <div className="timeline-icon bg-blue">🩺</div>
-          <div className="timeline-content">
-            <div className="timeline-header">
-              <h4>Blood Pressure</h4>
-              <span className="time-text">Jun 22, 8:15 AM</span>
-            </div>
-            <p className="metric">135 / 85 mmHg</p>
-            <span className="status-text warning">Slightly Elevated</span>
-          </div>
+        <div className="record-mini-card">
+          <span className="date">18 May 2026</span>
+          <div className="record-val">Weight: 70 kg <span>›</span></div>
         </div>
       </div>
+
+      <button className="btn-outline-primary" style={{ width: '100%', marginTop: '20px' }}>
+        View All Records
+      </button>
+
     </div>
   );
 }

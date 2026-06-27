@@ -21,10 +21,10 @@ function App() {
 
   const renderPage = () => {
     switch (activeTab) {
-      case 'Home': return <Home />;
+      case 'Home': return <Home setActiveTab={setActiveTab} />;
       case 'Schedule': return <Schedule />;
-      case 'Tracker': return <Tracker />;
-      case 'Records': return <Records />;
+      case 'Tracker': return <Tracker setActiveTab={setActiveTab} />;
+      case 'Records': return <Records setActiveTab={setActiveTab} />;
       case 'Profile': return <Profile onLogout={() => setIsAuthenticated(false)} />;      default: return <Home />;
     }
   };

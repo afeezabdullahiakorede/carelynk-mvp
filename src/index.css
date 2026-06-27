@@ -876,3 +876,488 @@ body {
   margin-bottom: 20px;
   animation: slideUp 0.8s ease-out;
 }
+
+/* --- Full Screen Modal (Medicine Flow) --- */
+.full-screen-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--white);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  animation: slideInRight 0.3s ease-out;
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid #E2E8F0;
+  background-color: var(--white);
+}
+
+.back-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 0;
+  color: var(--text-dark);
+}
+
+.modal-body {
+  padding: 20px;
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* Calendar Strip */
+.calendar-strip {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.calendar-day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  color: #64748B;
+}
+
+.calendar-day.active {
+  background-color: var(--primary-blue);
+  color: var(--white);
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.2);
+}
+
+.day-name {
+  font-size: 11px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.day-number {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+/* Medicine Cards */
+.medicine-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.med-card {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  border: 1px solid #E2E8F0;
+  border-radius: 16px;
+  background-color: var(--white);
+}
+
+.med-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  margin-right: 16px;
+}
+
+.med-details {
+  flex: 1;
+}
+
+.med-details h4 {
+  margin: 0 0 4px 0;
+  font-size: 15px;
+  color: var(--text-dark);
+}
+
+.med-details p {
+  margin: 0;
+  font-size: 12px;
+  color: #64748B;
+}
+
+.status-pill {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 12px;
+}
+
+.status-pill.taken {
+  background-color: #F1F5F9;
+  color: #64748B;
+}
+
+.status-pill.upcoming {
+  background-color: #DBEAFE;
+  color: var(--primary-blue);
+}
+
+/* --- Booking Flow Styles --- */
+.search-bar-fake {
+  display: flex;
+  align-items: center;
+  background-color: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 12px 16px;
+  gap: 12px;
+}
+
+.search-bar-fake input {
+  border: none;
+  background: none;
+  outline: none;
+  width: 100%;
+  font-size: 14px;
+  color: var(--text-dark);
+}
+
+.hospital-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.hospital-card {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  border: 1px solid #E2E8F0;
+  border-radius: 16px;
+  background-color: var(--white);
+  cursor: pointer;
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.hospital-card:active {
+  transform: scale(0.98);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.hosp-icon {
+  width: 48px;
+  height: 48px;
+  background-color: #F1F5F9;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  margin-right: 16px;
+}
+
+.hosp-details {
+  flex: 1;
+}
+
+.hosp-details h4 {
+  margin: 0 0 4px 0;
+  font-size: 15px;
+  color: var(--text-dark);
+}
+
+.hosp-details p {
+  margin: 0 0 4px 0;
+  font-size: 12px;
+  color: #64748B;
+}
+
+.hosp-details .rating {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.hosp-details .rating span {
+  font-weight: 400;
+  color: #94A3B8;
+}
+
+.selected-hospital-banner {
+  background-color: #DBEAFE;
+  color: var(--primary-blue);
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* Success Screen Styles */
+.success-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 40px 20px;
+  text-align: center;
+  background-color: var(--white);
+  animation: slideUp 0.4s ease-out;
+}
+
+.success-icon-large {
+  font-size: 72px;
+  margin-bottom: 20px;
+  animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes popIn {
+  0% { transform: scale(0); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.success-screen h2 {
+  font-size: 24px;
+  margin: 0 0 8px 0;
+  color: var(--text-dark);
+}
+
+.success-subtext {
+  font-size: 14px;
+  color: #64748B;
+  margin: 0 0 30px 0;
+  padding: 0 20px;
+  line-height: 1.5;
+}
+
+.receipt-card {
+  width: 100%;
+  background-color: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 40px;
+  text-align: left;
+}
+
+.receipt-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px dashed #CBD5E1;
+}
+
+.receipt-row:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.receipt-row .icon {
+  font-size: 24px;
+}
+
+.receipt-row strong {
+  display: block;
+  font-size: 14px;
+  color: var(--text-dark);
+  margin-bottom: 2px;
+}
+
+.receipt-row p {
+  margin: 0;
+  font-size: 12px;
+  color: #64748B;
+}
+
+.success-actions {
+  width: 100%;
+  margin-top: auto;
+}
+
+/* --- Tracker & History Page Styles --- */
+
+/* Tracker List */
+.tracker-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.tracker-card {
+  display: flex;
+  align-items: center;
+  background-color: var(--white);
+  border: 1px solid #E2E8F0;
+  border-radius: 16px;
+  padding: 16px;
+  text-align: left;
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+
+.tracker-card:active {
+  background-color: #F8FAFC;
+  transform: scale(0.98);
+}
+
+.tracker-icon-box {
+  width: 48px;
+  height: 48px;
+  background-color: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  margin-right: 16px;
+}
+
+.tracker-info {
+  flex: 1;
+}
+
+.tracker-info h4 {
+  margin: 0 0 4px 0;
+  font-size: 16px;
+  color: var(--text-dark);
+}
+
+.tracker-info p {
+  margin: 0;
+  font-size: 13px;
+  color: #64748B;
+}
+
+/* History Tabs */
+.history-tabs {
+  display: flex;
+  border-bottom: 2px solid #F1F5F9;
+  margin-bottom: 20px;
+}
+
+.tab {
+  flex: 1;
+  background: none;
+  border: none;
+  padding: 12px 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #94A3B8;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px; /* Pull down to overlap the container border */
+}
+
+.tab.active {
+  color: var(--primary-blue);
+  border-bottom: 2px solid var(--primary-blue);
+}
+
+/* Metric Cards */
+.metrics-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.metric-card {
+  background-color: var(--white);
+  border: 1px solid #E2E8F0;
+  border-radius: 16px;
+  padding: 20px;
+}
+
+.metric-header h4 {
+  margin: 0 0 16px 0;
+  font-size: 15px;
+  color: var(--text-dark);
+}
+
+.metric-body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.metric-data {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.metric-data .value {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-dark);
+  line-height: 1;
+}
+
+.metric-data .unit {
+  font-size: 13px;
+  color: #64748B;
+}
+
+.status-badge.normal {
+  background-color: #D1FAE5;
+  color: var(--success-green);
+  font-size: 11px;
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+.fake-chartline {
+  font-size: 48px;
+  opacity: 0.8;
+}
+
+/* Recent Records Mini Grid */
+.recent-records-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.record-mini-card {
+  background-color: var(--white);
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.record-mini-card .date {
+  display: block;
+  font-size: 11px;
+  color: #64748B;
+  margin-bottom: 8px;
+}
+
+.record-val {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.record-val span {
+  color: #CBD5E1;
+  font-size: 16px;
+}
