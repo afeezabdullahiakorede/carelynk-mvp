@@ -1,16 +1,35 @@
-# React + Vite
+# Carelynk: Smart Access to Care (Frontend MVP)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 📌 Overview
+Carelynk is a mobile-first, comprehensive healthcare management dashboard designed to bridge the gap between patients and medical providers. Developed as a high-fidelity Frontend Minimum Viable Product (MVP) for academic symposium evaluation, this application demonstrates advanced React state management, modular component architecture, and seamless UX/UI implementation.
 
-Currently, two official plugins are available:
+Developed in collaboration with the Betechified study group, this project showcases rapid prototyping, edge-case handling, and scalable component design.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🚀 Key Features
 
-## React Compiler
+*   **Intelligent Dashboard:** A dynamic home interface that adapts to user states, featuring conditional rendering for upcoming appointments, empty states, and recent health logs.
+*   **Multi-Step Appointment Engine:** A fully interactive booking flow that navigates users through hospital selection, department/doctor filtering, and confirmation views without page reloads.
+*   **Family & Dependent Management:** A dedicated "Parent Flow" allowing primary account holders to switch contexts, manage pediatric profiles, and assign preferred hospitals for dependents.
+*   **Health & Vitals Tracking:** Contextual modal workflows for logging real-time health metrics (Blood Pressure, Weight, Heart Rate) integrated seamlessly into the user's tracking history.
+*   **Medication Manager:** A dynamic weekly scheduling strip combined with a state-driven form to add and track medication adherence.
+*   **Simulated Authentication:** A secure "Gatekeeper" routing system demonstrating enterprise-grade protected routes and session states prior to backend API integration.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🛠️ Technical Architecture & MVP Scope
 
-## Expanding the ESLint configuration
+To meet strict development deadlines while ensuring a flawless presentation, the following engineering decisions were implemented:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+*   **Frontend Framework:** Built with **React** and powered by **Vite** for optimized build times and hot Module Replacement (HMR).
+*   **State Management:** Utilizes localized `useState` and `useEffect` hooks combined with top-level prop drilling for global navigation, ensuring a lightweight footprint without the overhead of Redux for the MVP phase.
+*   **Simulated Backend Service:** A custom `api.js` service handles asynchronous data fetching (with artificial delays) to demonstrate accurate loading states (spinners/skeletons) and simulate database latency.
+*   **Mobile-First CSS:** Custom CSS engineered exclusively for mobile viewports, utilizing CSS Variables for global theming, Flexbox/Grid for layout structuring, and keyframe animations for native-feeling slide-over transitions.
+
+## 📂 Project Structure
+The repository is organized following industry-standard modularity:
+*   `/src/pages` - Core routing views (Home, Profile, Tracker, Records, Login).
+*   `/src/components` - Reusable UI elements and complex multi-step flows (BookingFlow, ParentFlow, VitalsModal, Header, BottomNav).
+*   `/src/services` - Mock API functions for asynchronous data simulation.
+
+## 🌐 Live Deployment
+This project is continuously deployed via Vercel, demonstrating CI/CD integration directly from the main branch. 
+
+**Live Demo:** carelynk-mvp.vercel.app
