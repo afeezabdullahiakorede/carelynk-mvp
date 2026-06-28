@@ -1500,3 +1500,30 @@ body {
   font-size: 13px;
   color: #64748B;
 }
+
+/* --- Login Screen Styles --- */
+.login-screen {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: var(--white);
+  animation: slideInRight 0.3s ease-out;
+}
+
+.login-header {
+  padding: 20px;
+}
+
+.login-content {
+  padding: 0 24px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: -10vh; /* Pushes the content slightly up for better visual balance */
+}
+
+.login-content form {
+  display: flex;
+  flex-direction: column;
+}

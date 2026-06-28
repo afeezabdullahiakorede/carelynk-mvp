@@ -2,7 +2,8 @@ import { useState } from 'react';
 import './App.css';
 
 // Pages
-import Welcome from './pages/Welcome'; // <-- 1. Import the new Welcome page
+import Welcome from './pages/Welcome';
+import Login from './pages/Login'; // <-- IMPORT THE NEW LOGIN PAGE
 import Home from './pages/Home';
 import Schedule from './pages/Schedule';
 import Tracker from './pages/Tracker';
@@ -14,8 +15,8 @@ import Header from './components/Header';
 import BottomNav from './components/BottomNav';
 
 function App() {
-  // --- NEW: Authentication Gatekeeper ---
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [showLogin, setShowLogin] = useState(false); // <-- NEW STATE
   
   const [activeTab, setActiveTab] = useState('Home');
 
@@ -25,16 +26,32 @@ function App() {
       case 'Schedule': return <Schedule />;
       case 'Tracker': return <Tracker setActiveTab={setActiveTab} />;
       case 'Records': return <Records setActiveTab={setActiveTab} />;
-      case 'Profile': return <Profile onLogout={() => setIsAuthenticated(false)} />;      default: return <Home />;
+      case 'Profile': return <Profile onLogout={() => {
+        setIsAuthenticated(false);
+        setShowLogin(false); // Reset to Welcome screen on logout
+      }} />;
+      default: return <Home />;
     }
   };
 
-  // --- NEW: If the user is NOT logged in, show ONLY the Welcome screen ---
+  // --- NEW AUTHENTICATION ROUTING ---
   if (!isAuthenticated) {
+    // If they clicked "Login" on the Welcome screen, show the Login Form
+    if (showLogin) {
+      return (
+        <div className="app-container">
+          <Login 
+            onLogin={() => setIsAuthenticated(true)} 
+            onBack={() => setShowLogin(false)} 
+          />
+        </div>
+      );
+    }
+    
+    // Otherwise, show the default Welcome screen
     return (
       <div className="app-container">
-        {/* Pass the function to unlock the app when they click "Get Started" */}
-        <Welcome onLogin={() => setIsAuthenticated(true)} />
+        <Welcome onLogin={() => setShowLogin(true)} />
       </div>
     );
   }
