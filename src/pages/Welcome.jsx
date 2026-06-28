@@ -5,7 +5,7 @@ export default function Welcome({ onLogin }) {
         {/* App Branding */}
         <div className="logo-large">🏥</div>
         <h1>Carelynk</h1>
-        <p className="tagline">Your Health, Our Priority</p>
+        <p className="tagline">Smart Access to Healthcare</p>
 
         {/* Onboarding Graphic & Copy */}
         <div className="welcome-illustration">

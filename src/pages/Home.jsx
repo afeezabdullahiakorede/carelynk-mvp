@@ -1,16 +1,16 @@
 import { useState, useEffect } from 'react';
-import VitalsModal from '../components/VitalsModal';
 import RescheduleModal from '../components/RescheduleModal';
 import MedicineManager from '../components/MedicineManager';
 import BookingFlow from '../components/BookingFlow';
+import HospitalsDirectory from '../components/HospitalsDirectory';
 import { fetchDashboardData } from '../services/api';
 
 // --- UPDATE: Accept setActiveTab as a prop ---
 export default function Home({ setActiveTab }) {
-  const [isVitalsOpen, setIsVitalsOpen] = useState(false);
   const [isRescheduleOpen, setIsRescheduleOpen] = useState(false);
   const [isMedicineOpen, setIsMedicineOpen] = useState(false);
   const [isBookingOpen, setIsBookingOpen] = useState(false);
+  const [isHospitalsOpen, setIsHospitalsOpen] = useState(false);
 
   const [isLoading, setIsLoading] = useState(true);
   const [dashboardData, setDashboardData] = useState(null);
@@ -90,7 +90,7 @@ export default function Home({ setActiveTab }) {
           <span className="action-icon">💊</span><span>Med Reminders</span>
         </button>
         
-        <button className="action-card" onClick={() => alert('V2 Feature: Map API Integration')}>
+        <button className="action-card" onClick={() => setIsHospitalsOpen(true)}>
           <span className="action-icon">🏥</span><span>Hospitals</span>
         </button>
         
@@ -134,11 +134,10 @@ export default function Home({ setActiveTab }) {
       )}
 
       {/* D. Modals */}
-      <VitalsModal isOpen={isVitalsOpen} onClose={() => setIsVitalsOpen(false)} />
       <RescheduleModal isOpen={isRescheduleOpen} onClose={() => setIsRescheduleOpen(false)} />
       <MedicineManager isOpen={isMedicineOpen} onClose={() => setIsMedicineOpen(false)} />
       <BookingFlow isOpen={isBookingOpen} onClose={() => setIsBookingOpen(false)} />
-      
+      <HospitalsDirectory isOpen={isHospitalsOpen} onClose={() => setIsHospitalsOpen(false)} />
     </div>
   );
 }

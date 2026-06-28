@@ -42,7 +42,7 @@ function App() {
   // --- If they ARE logged in, show the normal app ---
   return (
     <div className="app-container">
-      <Header />
+      <Header setActiveTab={setActiveTab} />
       
       <main className="content-area" style={{ padding: '20px', paddingBottom: '80px' }}>
         {renderPage()}
