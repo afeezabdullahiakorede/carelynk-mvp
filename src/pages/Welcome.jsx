@@ -1,11 +1,22 @@
+import carelynkLogo from '../assets/carelynk-logo.png';
 export default function Welcome({ onLogin }) {
   return (
     <div className="welcome-screen">
-      <div className="welcome-content">
-        {/* App Branding */}
-        <div className="logo-large">🏥</div>
-        <h1>Carelynk</h1>
-        <p className="tagline">Smart Access to Healthcare</p>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '40px' }}>
+        
+        <img 
+          src={carelynkLogo} 
+          alt="Carelynk Logo" 
+          style={{ width: '150px', height: 'auto', marginBottom: '-35px', zIndex: 1 }} 
+        />
+        
+        <h1 style={{ color: 'var(--primary-blue)', margin: 0, fontSize: '36px', letterSpacing: '-1px', fontWeight: '800', zIndex: 2 }}>
+          Carelynk
+        </h1>
+        
+        <p style={{ margin: '0', fontSize: '15px', color: '#64748B', fontWeight: '500' }}>
+          Smart Access to Healthcare
+        </p>
 
         {/* Onboarding Graphic & Copy */}
         <div className="welcome-illustration">
