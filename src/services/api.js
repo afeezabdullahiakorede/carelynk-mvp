@@ -30,33 +30,55 @@
 
 const BASE_URL = 'https://carelynk-api.onrender.com/api/v1';
 
-export const fetchDashboardData = async () => {
-  try {
-    // 1. The Request: We use 'fetch' to make a GET request to the specific dashboard endpoint
-    const response = await fetch(`${BASE_URL}/dashboard`);
-    
-    // 2. The Check: Ensure the server responded with a success status (like 200 OK)
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-    
-    // 3. The Parse: Convert the server's response into a JavaScript object
-    const data = await response.json();
+// --- 1. Authenticaton: Log In & Save Token ---
+export const loginUser = async (email, password) => {
+  const response = await fetch(`${BASE_URL}/auth/login`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email, password })
+  });
 
-    console.log("🚨 DATA FROM BACKEND:", data);
-    
-    // 4. The Return: Send the data back to your Home.jsx component
-    return data;
+  const result = await response.json();
+
+  if (!response.ok) {
+    throw new Error(result.message || 'Login failed. Check credentials.');
+  }
+
+  // Save the secure token to the browser so we stay logged in
+  localStorage.setItem('carelynk_token', result.data.accessToken);
+  
+  return result.data.user;
+};
+
+// --- 2. Data Fetching: Authenticated Dashboard ---
+export const fetchDashboardData = async () => {
+  const token = localStorage.getItem('carelynk_token');
+
+  // If there is no token, don't even try to fetch—just return empty
+  if (!token) return { hasAppointments: false, recentLogs: [] };
+
+  try {
+    const response = await fetch(`${BASE_URL}/users/dashboard`, {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      }
+    });
+
+    if (!response.ok) throw new Error('Failed to fetch dashboard');
+
+    const result = await response.json();
+
+    // Map the backend's exact data structure to our React components
+    return {
+      hasAppointments: result.data.upcoming && result.data.upcoming.length > 0,
+      appointment: result.data.upcoming ? result.data.upcoming[0] : null,
+      recentLogs: result.data.recentLogs || []
+    };
     
   } catch (error) {
-    // 5. The Fallback: If the server crashes or the internet drops, log the error
-    console.error("Error fetching dashboard data:", error);
-    
-    // Optional: Return a safe fallback object so your app doesn't go to a white screen
-    return {
-      hasAppointments: false,
-      hasLogs: false,
-      recentLogs: []
-    };
+    console.error("Dashboard Fetch Error:", error);
+    return { hasAppointments: false, recentLogs: [] };
   }
 };

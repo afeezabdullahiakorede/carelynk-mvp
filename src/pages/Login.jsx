@@ -1,20 +1,35 @@
 import { useState } from 'react';
+import { loginUser } from '../services/api'; // <-- 1. Import your new API function
 
 export default function Login({ onLogin, onBack }) {
   const [identifier, setIdentifier] = useState('');
   const [password, setPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(false); // Add a loading state
+  const [errorMsg, setErrorMsg] = useState('');      // Add an error state
 
-  const handleSignIn = (e) => {
-    e.preventDefault(); // Prevents the page from refreshing
+  const handleSignIn = async (e) => {
+    e.preventDefault();
+    setErrorMsg('');
     
-    // Basic validation just for the MVP presentation
     if (!identifier || !password) {
-      alert('Please enter your details to continue.');
+      setErrorMsg('Please enter your details to continue.');
       return;
     }
-    
-    // Trigger the unlock function passed from App.jsx
-    onLogin();
+
+    setIsLoading(true);
+
+    try {
+      // 2. Call the real backend!
+      await loginUser(identifier, password);
+      
+      // 3. If it succeeds without throwing an error, unlock the app!
+      onLogin();
+    } catch (err) {
+      // 4. If the backend rejects the password, show the error
+      setErrorMsg(err.message);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -28,7 +43,7 @@ export default function Login({ onLogin, onBack }) {
           Welcome Back
         </h1>
         <p style={{ margin: '0 0 32px 0', color: '#64748B', fontSize: '15px' }}>
-          Sign in to access your health records.
+          Log in to continue your health journey
         </p>
 
         <form onSubmit={handleSignIn}>
@@ -60,8 +75,15 @@ export default function Login({ onLogin, onBack }) {
             </span>
           </div>
 
-          <button type="submit" className="btn-primary" style={{ width: '100%', padding: '16px', fontSize: '16px' }}>
-            Sign In
+          {/* Show red error box if login fails */}
+        {errorMsg && (
+          <div style={{ backgroundColor: '#FEE2E2', color: '#DC2626', padding: '12px', borderRadius: '8px', marginBottom: '16px', fontSize: '14px' }}>
+            {errorMsg}
+          </div>
+          )}
+
+          <button type="submit" className="btn-primary" style={{ width: '100%', padding: '16px', fontSize: '16px' }} disabled={isLoading}>
+            {isLoading ? 'Authenticating...' : 'Log In'}
           </button>
         </form>
 

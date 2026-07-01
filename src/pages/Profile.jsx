@@ -4,6 +4,8 @@ import ParentFlow from '../components/ParentFlow'; // <-- 1. Import the flow
 export default function Profile({ onLogout }) {
   // <-- 2. Add state for the modal
   const [isParentFlowOpen, setIsParentFlowOpen] = useState(false);
+  // State to toggle the beautiful orange confirmation box
+  const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
 
   return (
     <div className="page-layout">
@@ -57,7 +59,7 @@ export default function Profile({ onLogout }) {
       <button 
         className="btn-danger" 
         style={{ marginTop: '30px', width: '100%', padding: '16px', backgroundColor: '#FEE2E2', color: '#DC2626', border: 'none', borderRadius: '12px', fontWeight: '700', fontSize: '15px' }}
-        onClick={onLogout}
+        onClick={() => setShowLogoutConfirm(true)}
       >
         Log Out
       </button>

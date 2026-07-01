@@ -1,11 +1,21 @@
 :root {
   /* Carelynk Brand Colors */
-  --primary-blue: #2563EB;
+  --primary-blue:#0D9488;
   --success-green: #10B981;
   --alert-red: #EF4444;
-  --bg-light: #F8FAFC;
+  --bg-light: #F0FDFA;
   --text-dark: #1E293B;
   --white: #FFFFFF;
+}
+
+.modern-card {
+  background-color: var(--bg-surface);
+  border-radius: 20px; /* Larger, softer corners */
+  padding: 24px;
+  /* An ultra-soft, wide-spread shadow creates premium depth */
+  box-shadow: 0 8px 30px rgba(10, 54, 34, 0.04); 
+  border: 1px solid rgba(10, 54, 34, 0.03); /* Barely visible crisp edge */
+  margin-bottom: 16px;
 }
 
 body {
@@ -224,10 +234,11 @@ body {
 }
 
 .action-card {
-  background-color: var(--white);
+  background-color: var(--primary-pine);
+  color: var(--bg-surface);
   border: 1px solid #E2E8F0;
   border-radius: 12px;
-  padding: 16px 8px; /* Slightly tighter padding to fit 3 in a row */
+  padding: 14px; 
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -245,6 +256,7 @@ body {
 
 .action-card:active {
   transform: scale(0.95);
+  opacity: 0.9;
 }
 
 .action-card span:not(.action-icon) {
